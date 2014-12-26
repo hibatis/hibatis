@@ -30,8 +30,6 @@ public class HibatisSqlSessionFactoryBuilder extends SqlSessionFactoryBuilder {
 	@Override
 	public SqlSessionFactory build(Configuration config) {
 
-		logger.info(config.getMappedStatementNames());
-
 		Collection<MappedStatement> mappedStatements = config.getMappedStatements();
 		for (Object obj : mappedStatements) {
 			if (obj instanceof MappedStatement) {
