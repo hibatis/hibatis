@@ -1,14 +1,13 @@
 package com.github.abel533.mapper;
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.jdbc.ScriptRunner;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import java.io.*;
+import java.sql.*;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.sql.Connection;
+import org.apache.ibatis.io.*;
+import org.apache.ibatis.jdbc.*;
+import org.apache.ibatis.session.*;
+
+import com.github.hibatis.*;
 
 /**
  * Description: MybatisHelper
@@ -17,39 +16,40 @@ import java.sql.Connection;
  */
 public class MybatisHelper {
 
-    private static SqlSessionFactory sqlSessionFactory;
+	private static SqlSessionFactory sqlSessionFactory;
 
-    static {
-        try {
-            //创建SqlSessionFactory
-            Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
-            sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-            reader.close();
-            //创建数据库
-            SqlSession session = null;
-            try {
-                session = sqlSessionFactory.openSession();
-                Connection conn = session.getConnection();
-                reader = Resources.getResourceAsReader("CreateDB.sql");
-                ScriptRunner runner = new ScriptRunner(conn);
-                runner.setLogWriter(null);
-                runner.runScript(reader);
-                reader.close();
-            } finally {
-                if (session != null) {
-                    session.close();
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	static {
+		try {
+			// 创建SqlSessionFactory
+			Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
+			sqlSessionFactory = new HibatisSqlSessionFactoryBuilder().build(reader);
+			reader.close();
+			// 创建数据库
+			SqlSession session = null;
+			try {
+				session = sqlSessionFactory.openSession();
+				Connection conn = session.getConnection();
+				reader = Resources.getResourceAsReader("CreateDB.sql");
+				ScriptRunner runner = new ScriptRunner(conn);
+				runner.setLogWriter(null);
+				runner.runScript(reader);
+				reader.close();
+			} finally {
+				if (session != null) {
+					session.close();
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-    /**
-     * 获取Session
-     * @return
-     */
-    public static SqlSession getSqlSession(){
-        return sqlSessionFactory.openSession();
-    }
+	/**
+	 * 获取Session
+	 * 
+	 * @return
+	 */
+	public static SqlSession getSqlSession() {
+		return sqlSessionFactory.openSession();
+	}
 }

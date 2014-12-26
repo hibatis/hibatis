@@ -20,51 +20,50 @@
 	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
-*/
+ */
 
 package com.github.abel533.mapper;
 
-import org.apache.ibatis.annotations.DeleteProvider;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.SelectProvider;
-import org.apache.ibatis.annotations.UpdateProvider;
+import java.util.*;
 
-import java.util.List;
+import org.apache.ibatis.annotations.*;
 
 /**
  * 通用Mapper接口,其他接口继承该接口即可
- * <p>项目地址 : <a href="https://github.com/abel533/Mapper" target="_blank">https://github.com/abel533/Mapper</a></p>
+ * <p>
+ * 项目地址 : <a href="https://github.com/abel533/Mapper" target="_blank">https://github.com/abel533/Mapper</a>
+ * </p>
  *
  * @param <T> 不能为空
  * @author liuzh
  */
 public interface Mapper<T> {
 
-    @SelectProvider(type = MapperProvider.class, method = "dynamicSQL")
-    List<T> select(T record);
+	@SelectProvider(type = MapperProvider.class, method = "dynamicSQL")
+	List<T> select(T record);
 
-    @SelectProvider(type = MapperProvider.class, method = "dynamicSQL")
-    int selectCount(T record);
+	@SelectProvider(type = MapperProvider.class, method = "dynamicSQL")
+	int selectCount(T record);
 
-    @SelectProvider(type = MapperProvider.class, method = "dynamicSQL")
-    T selectByPrimaryKey(Object key);
+	@SelectProvider(type = MapperProvider.class, method = "dynamicSQL")
+	T selectByPrimaryKey(Object key);
 
-    @InsertProvider(type = MapperProvider.class, method = "dynamicSQL")
-    int insert(T record);
+	@InsertProvider(type = MapperProvider.class, method = "dynamicSQL")
+	int insert(T record);
 
-    @InsertProvider(type = MapperProvider.class, method = "dynamicSQL")
-    int insertSelective(T record);
+	@InsertProvider(type = MapperProvider.class, method = "dynamicSQL")
+	int insertSelective(T record);
 
-    @DeleteProvider(type = MapperProvider.class, method = "dynamicSQL")
-    int delete(T key);
+	@DeleteProvider(type = MapperProvider.class, method = "dynamicSQL")
+	int delete(T key);
 
-    @DeleteProvider(type = MapperProvider.class, method = "dynamicSQL")
-    int deleteByPrimaryKey(Object key);
+	@DeleteProvider(type = MapperProvider.class, method = "dynamicSQL")
+	int deleteByPrimaryKey(Object key);
 
-    @UpdateProvider(type = MapperProvider.class, method = "dynamicSQL")
-    int updateByPrimaryKey(T record);
+	@UpdateProvider(type = MapperProvider.class, method = "dynamicSQL")
+	int updateByPrimaryKey(T record);
 
-    @UpdateProvider(type = MapperProvider.class, method = "dynamicSQL")
-    int updateByPrimaryKeySelective(T record);
+	@UpdateProvider(type = MapperProvider.class, method = "dynamicSQL")
+	int updateByPrimaryKeySelective(T record);
 
 }

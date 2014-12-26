@@ -24,7 +24,8 @@ public class TestSelect {
         SqlSession sqlSession = MybatisHelper.getSqlSession();
         try {
             CountryMapper mapper = sqlSession.getMapper(CountryMapper.class);
-            List<Country> countryList = mapper.select(new Country());
+            final Country record = new Country();
+			List<Country> countryList = mapper.select(record);
             //查询总数
             Assert.assertEquals(183, countryList.size());
         } finally {

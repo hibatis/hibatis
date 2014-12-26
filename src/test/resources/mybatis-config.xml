@@ -4,16 +4,16 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-  <settings>
-    <setting name="cacheEnabled" value="true"/>
-    <setting name="lazyLoadingEnabled" value="false"/>
-    <setting name="aggressiveLazyLoading" value="true"/>
-    <setting name="logImpl" value="LOG4J"/>
-  </settings>
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="aggressiveLazyLoading" value="true" />
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
 
-  <typeAliases>
-    <package name="com.github.abel533.model"/>
-  </typeAliases>
+	<typeAliases>
+		<package name="com.github.abel533.model" />
+	</typeAliases>
 
 	<plugins>
 		<plugin interceptor="com.github.abel533.mapper.MapperInterceptor">
@@ -25,14 +25,14 @@
 			<!--默认值32位长度:@java.util.UUID@randomUUID().toString().replace("-", "")-->
 			<!--<property name="UUID" value="@java.util.UUID@randomUUID().toString()"/>-->
 			<!--主键自增回写方法,默认值MYSQL,详细说明请看文档-->
-			<property name="IDENTITY" value="HSQLDB"/>
-      <!--序列的获取规则,使用{num}格式化参数，默认值为{0}.nextval，针对Oracle-->
-      <!--可选参数一共3个，对应0,1,2,分别为SequenceName，ColumnName,PropertyName-->
-			<property name="seqFormat" value="{0}.nextval"/>
+			<property name="IDENTITY" value="HSQLDB" />
+		      <!--序列的获取规则,使用{num}格式化参数，默认值为{0}.nextval，针对Oracle-->
+		      <!--可选参数一共3个，对应0,1,2,分别为SequenceName，ColumnName,PropertyName-->
+			<property name="seqFormat" value="{0}.nextval" />
 			<!--主键自增回写方法执行顺序,默认AFTER,可选值为(BEFORE|AFTER)-->
-			<property name="ORDER" value="AFTER"/>
+			<property name="ORDER" value="AFTER" />
 			<!--通用Mapper接口，多个用逗号隔开-->
-			<property name="mappers" value="com.github.abel533.mapper.Mapper,com.github.abel533.hsqldb.HsqldbMapper"/>
+			<property name="mappers" value="com.github.abel533.mapper.Mapper,com.github.abel533.hsqldb.HsqldbMapper" />
 		</plugin>
 	</plugins>
 
@@ -50,15 +50,15 @@
 	</environments>
 
 	<mappers>
-    <mapper class="com.github.abel533.mapper.CountryMapper" />
-    <mapper class="com.github.abel533.mapper.Country2Mapper" />
-    <mapper class="com.github.abel533.mapper.CountryTMapper" />
-    <mapper class="com.github.abel533.mapper.CountryUMapper" />
-    <mapper class="com.github.abel533.mapper.CountryIMapper" />
-    <mapper class="com.github.abel533.mapper.UserInfoMapper" />
-    <mapper class="com.github.abel533.mapper.UserInfoMapMapper" />
-    <mapper class="com.github.abel533.mapper.UserLoginMapper" />
-    <mapper class="com.github.abel533.mapper.UserLogin2Mapper" />
+		<mapper class="com.github.abel533.mapper.CountryMapper" />
+		<mapper class="com.github.abel533.mapper.Country2Mapper" />
+		<mapper class="com.github.abel533.mapper.CountryTMapper" />
+		<mapper class="com.github.abel533.mapper.CountryUMapper" />
+		<mapper class="com.github.abel533.mapper.CountryIMapper" />
+		<mapper class="com.github.abel533.mapper.UserInfoMapper" />
+		<mapper class="com.github.abel533.mapper.UserInfoMapMapper" />
+		<mapper class="com.github.abel533.mapper.UserLoginMapper" />
+		<mapper class="com.github.abel533.mapper.UserLogin2Mapper" />
 	</mappers>
 
 </configuration>
