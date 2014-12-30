@@ -19,6 +19,7 @@ import com.github.hibatis.*;
 @AutoMapper
 public interface CrudMapper<T, PK extends Serializable> extends Mapper<T, PK> {
 
+	// @SelectProvider(type = CrudMapperImpl.class, method = "get")
 	T get(PK id);
 
 }

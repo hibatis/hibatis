@@ -86,6 +86,7 @@ public class MapperProvider extends MapperTemplate {
 		WHERE(EntityHelper.getPrimaryKeyWhere(entityClass));
 		// SQL()方法获取最终SQL，使用静态SqlSource
 		StaticSqlSource sqlSource = new StaticSqlSource(ms.getConfiguration(), SQL(), parameterMappings);
+
 		// 替换原有的SqlSource
 		setSqlSource(ms, sqlSource);
 		// 将返回值修改为实体类型
